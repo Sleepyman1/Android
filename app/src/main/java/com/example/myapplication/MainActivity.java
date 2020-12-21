@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     case R.id.rbPlus:
                         sum = val1 + val2;
                         break;
+
                     case R.id.rbMinus:
                         sum = val1 - val2;
                         break;
