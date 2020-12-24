@@ -1,17 +1,22 @@
 package com.example.myapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
+import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     TextView tvHello, tvResult;
@@ -52,6 +57,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tvResult = (TextView) findViewById(R.id.tvResult);
         btnCalculate = (Button) findViewById(R.id.btnCalculate);
         rgOperator = (RadioGroup) findViewById(R.id.rgOperator);
+
+
         btnCalculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,6 +90,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         break;
                 }
                 tvResult.setText(sum + "");
+                Log.d("Calculatuion","Result = "+sum);
+                Toast.makeText(MainActivity.this,
+                        "Result =" + sum,
+                        Toast.LENGTH_SHORT)
+                        .show();
             }
         });
     }
@@ -96,5 +108,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main,menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId()==R.id.action_settings){
+            Toast.makeText(this, "Setting clicked", Toast.LENGTH_SHORT).show();
+            return  true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
